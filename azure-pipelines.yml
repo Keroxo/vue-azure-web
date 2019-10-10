@@ -8,7 +8,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: NodeTool@0
@@ -17,7 +17,6 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install -g @vue/cli
     npm install
     npm run build
   displayName: 'npm install and build'
@@ -28,10 +27,9 @@ steps:
     ArtifactName: 'dist'
     publishLocation: 'Container'
 
-- task: AzureFileCopy@3
+- task: AzureCLI@2
   inputs:
-    SourcePath: '$(Build.ArtifactStagingDirectory)'
     azureSubscription: $(subscription)
-    Destination: 'AzureBlob'
-    storage: 'vueazuredemo'
-    ContainerName: 'web'
+    scriptType: 'batch'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az group deployment create --resource-group vue-azure-demo --template-file template.json'
