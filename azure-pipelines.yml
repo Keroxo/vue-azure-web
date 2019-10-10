@@ -17,15 +17,17 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    npm install -g @vue/cli
     npm install
     npm run build
-    ls
   displayName: 'npm install and build'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'dist'
     publishLocation: 'Container'
+
 - task: AzureFileCopy@3
   inputs:
     SourcePath: '$(Build.ArtifactStagingDirectory)'
