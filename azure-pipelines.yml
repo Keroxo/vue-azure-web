@@ -34,5 +34,5 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       az group deployment create --resource-group vue-azure-demo --template-file template.json
-      az storage blob copy start --destination-blob vueazuredemo --destination-container $web --source-path ./dist
+      az storage blob copy start --destination-blob vueazuredemo --destination-container "$web" --source-path ./dist
       az storage blob service-properties update --account-name vueazuredemo --static-website  --index-document index.html
