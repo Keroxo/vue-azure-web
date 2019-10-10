@@ -29,7 +29,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: '$(subscription)'
+    azureSubscription: $(subscription)
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: 'az group deployment create --resource-group vue-azure-demo --template-file template.json'
