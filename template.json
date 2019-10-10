@@ -61,7 +61,7 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', 'vueazuredemo')]"
             ],
             "properties": {
-                "publicAccess": "Blob"
+                "publicAccess": "Container"
             }
         }
     ]
