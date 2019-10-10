@@ -25,4 +25,10 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-
+- task: AzureFileCopy@3
+  inputs:
+    SourcePath: '$(Build.ArtifactStagingDirectory)'
+    azureSubscription: $(subscription)
+    Destination: 'AzureBlob'
+    storage: 'vueazuredemo'
+    ContainerName: 'web'
