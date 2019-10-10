@@ -23,13 +23,13 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: './dist'
     ArtifactName: 'dist'
     publishLocation: 'Container'
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: $(subscription)
-    scriptType: 'batch'
+    azureSubscription: '$(subscription)'
+    scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: 'az group deployment create --resource-group vue-azure-demo --template-file template.json'
